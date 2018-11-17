@@ -3,15 +3,19 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
+const debug = require('debug')('server')
 
-const {PORT, HOST} = require('../config')
 const {router} = require('./router')
-
-function logger() {
-  // eslint-disable-next-line no-console
-  console.log(`Listening on ${HOST}:${PORT}`)
-}
 
 app.use(bodyParser.json())
 app.use(router)
-app.listen(PORT, logger)
+
+function logger(host, port) {
+  return () => debug('Listening on %s:%d', host, port)
+}
+
+function start(host, port) {
+  app.listen(port, logger(host, port))
+}
+
+module.exports = {start}
