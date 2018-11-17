@@ -6,11 +6,12 @@ module.exports = {
   extends: ['eslint:recommended'],
   plugins: ['prettier'],
   parserOptions: {
-    sourceType: 'module'
+    sourceType: 'module',
+    ecmaVersion: 2017
   },
   rules: {
     'no-trailing-spaces': 'error',
-    'no-unused-vars': ['error', {'ignoreRestSiblings': true}],
+    'no-unused-vars': ['error', {ignoreRestSiblings: true}],
     camelcase: ['error', {properties: 'always'}],
     'prettier/prettier': 'error',
     indent: ['error', 2],
