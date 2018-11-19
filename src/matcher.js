@@ -4,20 +4,26 @@ const {read} = require('./spreadsheet')
 
 const LIMIT = 10
 
-function matcher(name) {
-  return rows => findMatching(partitionByName(rows, name))
+function matcher(name, rows) {
+  return findMatching(partitionByName(rows, name))
 }
 
-function findMatching([[person], people]) {
+function partitionByName(rows, name) {
+  const [[person], people] = fp.partition(['name', name])(rows)
+
+  if (person) {
+    return {person, people}
+  } else {
+    throw new Error(`Użytkownik ${name} nie znaleziony.`)
+  }
+}
+
+function findMatching({person, people}) {
   return order(person, people).slice(0, LIMIT)
 }
 
 function order(person, people) {
   return fp.sortBy(sorter(person))(people)
-}
-
-function partitionByName(rows, name) {
-  return fp.partition(['name', name])(rows)
 }
 
 function sorter(person) {
@@ -29,7 +35,7 @@ function keysCount(person, personToCompare) {
 }
 
 function find(name) {
-  return read.then(matcher(name))
+  return read.then(rows => matcher(name, rows))
 }
 
 module.exports = {find}
