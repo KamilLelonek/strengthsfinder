@@ -1,7 +1,7 @@
 {
   "name": "strengthsfinder",
   "version": "1.0.0",
-  "description": "Strengthsfinder Poland API ",
+  "description": "Strengthsfinder Poland API",
   "main": "server.js",
   "scripts": {
     "test": "jest",
