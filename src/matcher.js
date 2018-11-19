@@ -28,4 +28,8 @@ function keysCount(person, personToCompare) {
   return fp.keys(person).filter(key => key in personToCompare).length
 }
 
-read(matcher('Kamil Lelonek'))
+function find(name) {
+  return read.then(matcher(name))
+}
+
+module.exports = {find}

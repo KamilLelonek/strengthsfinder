@@ -4,7 +4,7 @@ const async = require('async')
 const {SPREADSHEET_ID} = require('../config')
 const {map} = require('./mapper')
 
-function read(cb) {
+const read = new Promise(function(resolve, reject) {
   async.series(
     [
       step => {
@@ -16,10 +16,18 @@ function read(cb) {
         })
       },
       step =>
-        this.sheet.getRows({offset: 4}, (_error, rows) => step(rows.map(map)))
+        this.sheet.getRows({offset: 4}, (_error, rows) =>
+          step(null, rows.map(map))
+        )
     ],
-    result => cb(result)
+    (err, [_step1, step2]) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(step2)
+      }
+    }
   )
-}
+})
 
 module.exports = {read}
