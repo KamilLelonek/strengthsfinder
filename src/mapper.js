@@ -1,9 +1,9 @@
 const fp = require('lodash/fp')
 
 const mappings = {
-  _cn6ca: 'Imię i nazwisko',
-  _cokwr: 'Branża',
-  _cpzh4: 'Miasto',
+  _cn6ca: 'name',
+  _cokwr: 'occupation',
+  _cpzh4: 'city',
   executing: 'achiever',
   _chk2m: 'arranger',
   _ciyn3: 'belief',
