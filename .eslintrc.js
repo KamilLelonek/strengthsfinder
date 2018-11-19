@@ -11,7 +11,10 @@ module.exports = {
   },
   rules: {
     'no-trailing-spaces': 'error',
-    'no-unused-vars': ['error', {ignoreRestSiblings: true}],
+    'no-unused-vars': [
+      'error',
+      {ignoreRestSiblings: true, argsIgnorePattern: '^_'}
+    ],
     camelcase: ['error', {properties: 'always'}],
     'prettier/prettier': 'error',
     indent: ['error', 2],
