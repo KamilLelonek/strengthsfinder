@@ -40,11 +40,17 @@ const mappings = {
   _dqi9q: 'strategic'
 }
 
+const keys = fp.keys(mappings)
+
+function cellName(key) {
+  return mappings[key]
+}
+
 function map(row) {
   return fp.pipe([
-    fp.pickAll(fp.keys(mappings)),
-    fp.mapKeys(key => mappings[key]),
-    fp.omitBy(fp.isEmpty)
+    fp.pickAll(keys),
+    fp.omitBy(fp.isEmpty),
+    fp.mapKeys(cellName)
   ])(row)
 }
 
