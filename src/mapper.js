@@ -49,7 +49,7 @@ function cellName(key) {
 function map(row) {
   return fp.pipe([
     fp.pickAll(keys),
-    fp.omitBy(fp.isEmpty),
+    fp.pickBy(fp.identity),
     fp.mapKeys(cellName)
   ])(row)
 }
