@@ -22,6 +22,6 @@ describe('map', () => {
   test('should map known keys', () => {
     const row = {_dkvya: 1, _d88ul: 34}
 
-    expect(map(row)).toEqual({harmony: 1, empathy: 34})
+    expect(map(row)).toEqual({top1: 'harmony', top34: 'empathy'})
   })
 })

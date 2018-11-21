@@ -42,15 +42,21 @@ const mappings = {
 
 const keys = fp.keys(mappings)
 
-function cellName(key) {
+function findName(key) {
   return mappings[key]
+}
+
+function appendTop(value) {
+  return `top${value}`
 }
 
 function map(row) {
   return fp.pipe([
     fp.pickAll(keys),
     fp.pickBy(fp.identity),
-    fp.mapKeys(cellName)
+    fp.mapKeys(findName),
+    fp.mapValues(appendTop),
+    fp.invert
   ])(row)
 }
 
