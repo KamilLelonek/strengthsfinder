@@ -1,4 +1,4 @@
-# strengthsfinder
+# strengthsfinder-api
 
 ## Setup
 
@@ -26,4 +26,4 @@ Run application server:
 
 The available endpoints are:
 
-* `GET /`
+- `GET /`

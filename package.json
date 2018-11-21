@@ -1,5 +1,5 @@
 {
-  "name": "strengthsfinder",
+  "name": "strengthsfinder-api",
   "version": "1.0.0",
   "description": "Strengthsfinder Poland API",
   "main": "server.js",
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/KamilLelonek/strengthsfinder.git"
+    "url": "git+ssh://git@github.com/KamilLelonek/strengthsfinder-api.git"
   },
   "keywords": [
     "strengthsfinder",
@@ -30,9 +30,9 @@
   "author": "Kamil Lelonek <kamil@lelonek.me>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/KamilLelonek/strengthsfinder/issues"
+    "url": "https://github.com/KamilLelonek/strengthsfinder-api/issues"
   },
-  "homepage": "https://github.com/KamilLelonek/strengthsfinder#readme",
+  "homepage": "https://github.com/KamilLelonek/strengthsfinder-api#readme",
   "devDependencies": {
     "eslint": "^5.9.0",
     "eslint-plugin-prettier": "^3.0.0",
