@@ -14,7 +14,7 @@ function partitionByName(rows, name) {
   if (person) {
     return {person, people}
   } else {
-    throw new Error(`Użytkownik ${name} nie znaleziony.`)
+    throw new Error(`Użytkownik ${name} nieznaleziony.`)
   }
 }
 
