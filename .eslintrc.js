@@ -8,7 +8,7 @@ module.exports = {
   plugins: ['prettier'],
   parserOptions: {
     sourceType: 'module',
-    ecmaVersion: 2017
+    ecmaVersion: 2018
   },
   rules: {
     'no-trailing-spaces': 'error',

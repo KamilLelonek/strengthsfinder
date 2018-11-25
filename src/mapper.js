@@ -1,9 +1,12 @@
 const fp = require('lodash/fp')
 
-const mappings = {
+const meta = {
   _cn6ca: 'name',
   _cokwr: 'occupation',
-  _cpzh4: 'city',
+  _cpzh4: 'city'
+}
+
+const themes = {
   executing: 'achiever',
   _chk2m: 'arranger',
   _ciyn3: 'belief',
@@ -40,7 +43,13 @@ const mappings = {
   _dqi9q: 'strategic'
 }
 
-const keys = fp.keys(mappings)
+const mappings = {
+  ...meta,
+  ...themes
+}
+
+const keysMeta = fp.keys(meta)
+const keysThemes = fp.keys(themes)
 
 function findName(key) {
   return mappings[key]
@@ -51,13 +60,20 @@ function appendTop(value) {
 }
 
 function map(row) {
-  return fp.pipe([
-    fp.pickAll(keys),
-    fp.pickBy(fp.identity),
-    fp.mapKeys(findName),
-    fp.mapValues(appendTop),
-    fp.invert
-  ])(row)
+  return {
+    ...fp.pipe([
+      fp.pickAll(keysThemes),
+      fp.pickBy(fp.identity),
+      fp.mapKeys(findName),
+      fp.mapValues(appendTop),
+      fp.invert
+    ])(row),
+    ...fp.pipe([
+      fp.pickAll(keysMeta),
+      fp.pickBy(fp.identity),
+      fp.mapKeys(findName)
+    ])(row)
+  }
 }
 
 module.exports = {map}

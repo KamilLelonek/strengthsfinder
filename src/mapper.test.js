@@ -24,4 +24,10 @@ describe('map', () => {
 
     expect(map(row)).toEqual({top1: 'harmony', top34: 'empathy'})
   })
+
+  test('should not revert non-tallents', () => {
+    const row = {_cn6ca: 'Kamil', _cpzh4: 'Wrocław'}
+
+    expect(map(row)).toEqual({name: 'Kamil', city: 'Wrocław'})
+  })
 })
