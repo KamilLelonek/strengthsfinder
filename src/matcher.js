@@ -35,7 +35,7 @@ function keysCount(person, personToCompare) {
 }
 
 function find(name) {
-  return read.then(rows => matcher(name, rows))
+  return read().then(rows => matcher(name, rows))
 }
 
 module.exports = {find}
