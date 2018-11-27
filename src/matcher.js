@@ -3,6 +3,7 @@ const fp = require('lodash/fp')
 const {read} = require('./spreadsheet')
 
 const LIMIT = 10
+const KEYS = ['top1', 'top2', 'top3', 'top4', 'top5']
 
 function matcher(name, rows) {
   return findMatching(partitionByName(rows, name))
@@ -19,19 +20,23 @@ function partitionByName(rows, name) {
 }
 
 function findMatching({person, people}) {
-  return order(person, people).slice(0, LIMIT)
+  return fp.take(LIMIT)(order(person, people))
 }
 
 function order(person, people) {
-  return fp.sortBy(sorter(person))(people)
+  return fp.sortBy(compare(pickKeys(person)))(people)
 }
 
-function sorter(person) {
-  return (first, second) => keysCount(second, person) - keysCount(first, person)
+function compare(themesPerson) {
+  return personToCompare => {
+    const themesOther = pickKeys(personToCompare)
+
+    return -fp.intersection(themesPerson)(themesOther).length
+  }
 }
 
-function keysCount(person, personToCompare) {
-  return fp.keys(person).filter(key => key in personToCompare).length
+function pickKeys(person) {
+  return fp.pipe([fp.pick(KEYS), fp.values])(person)
 }
 
 function find(name) {
