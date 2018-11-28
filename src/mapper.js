@@ -48,8 +48,9 @@ const mappings = {
   ...themes
 }
 
-const keysMeta = fp.keys(meta)
-const keysThemes = fp.keys(themes)
+const keys = fp.keys(mappings)
+const valuesMeta = fp.values(meta)
+const valuesThemes = fp.values(themes)
 
 function findName(key) {
   return mappings[key]
@@ -59,20 +60,22 @@ function appendTop(value) {
   return `top${value}`
 }
 
+function translateRow(row) {
+  return fp.pipe([
+    fp.pickAll(keys),
+    fp.pickBy(fp.identity),
+    fp.mapKeys(findName)
+  ])(row)
+}
+
 function map(row) {
+  const translatedRow = translateRow(row)
+
   return {
-    ...fp.pipe([
-      fp.pickAll(keysThemes),
-      fp.pickBy(fp.identity),
-      fp.mapKeys(findName),
-      fp.mapValues(appendTop),
-      fp.invert
-    ])(row),
-    ...fp.pipe([
-      fp.pickAll(keysMeta),
-      fp.pickBy(fp.identity),
-      fp.mapKeys(findName)
-    ])(row)
+    ...fp.pipe([fp.pickAll(valuesThemes), fp.mapValues(appendTop), fp.invert])(
+      translatedRow
+    ),
+    ...fp.pickAll(valuesMeta)(translatedRow)
   }
 }
 
