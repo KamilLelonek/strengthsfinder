@@ -16,6 +16,10 @@ Run application server:
 
     npm run local
 
+### Flow
+
+    app -> server -> router -> matcher -> spreadsheet -> mapper
+
 ## Production
 
 Run application server:
@@ -26,4 +30,4 @@ Run application server:
 
 The available endpoints are:
 
-- `GET /`
+- `GET /:name`
