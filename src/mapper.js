@@ -60,16 +60,16 @@ function appendTop(value) {
   return `top${value}`
 }
 
-function translateRow(row) {
+function translateRow(rows) {
   return fp.pipe([
     fp.pickAll(keys),
     fp.pickBy(fp.identity),
     fp.mapKeys(findName)
-  ])(row)
+  ])(rows)
 }
 
-function map(row) {
-  const translatedRow = translateRow(row)
+function map(rows) {
+  const translatedRow = translateRow(rows)
 
   return {
     ...fp.pipe([fp.pickAll(valuesThemes), fp.mapValues(appendTop), fp.invert])(

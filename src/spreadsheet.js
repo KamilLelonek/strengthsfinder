@@ -1,9 +1,7 @@
 const GoogleSpreadsheet = require('google-spreadsheet')
 const async = require('async')
-const fp = require('lodash/fp')
 
 const {SPREADSHEET_ID} = require('../config')
-const {map} = require('./mapper')
 
 function read() {
   return new Promise(function(resolve, reject) {
@@ -24,7 +22,7 @@ function read() {
         if (err) {
           reject(err)
         } else {
-          fp.pipe([fp.map(map), resolve])(rows)
+          resolve(rows)
         }
       }
     )
